@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #banner {
+            background-color: blue;
+            max-width: 100%;
+            margin: 0 auto;
+            display: block;
+        }
+
+        h2 {
+            color: #808000;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-color: #5B84AD;
+            border-collapse: collapse;
+            border-width: 3px;
+            color: #5B84AD;
+        }
+        tr, td {
+            border-width: 3px;  
+            border-color: #5B84AD;    
+        }
+        #bor1 {
+            background-color: #0066CC;
+            text-transform: uppercase;
+        }
+        #bor2 {
+            background-color: #CEE7FF;
+            text-transform: capitalize;
+        }
+        .head {
+            text-align: center;
+        }
+        .whiteCo{
+                color:white;
+        }
+        .redCo{
+            color: red;
+            font-size: 20px
+        }
+        .brownCo{
+            color: brown;
+        }
+        .bold {
+        font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+
+<div id="banner">
+    <img src="images/h12.GIF">
+    <img src="images/logoAirline.gif">
+    <img src="images/h13.GIF">
+</div>
+<h2>lịch trình các chuyến bay</h2>
+<table border="1">
+    <tr id = "bor1" class="head whiteCo">
+        <td rowspan="2">thời gian</td>
+        <td colspan="2">Tuyến</td>
+    </tr>
+    <tr id = "bor2" class="head brownCo bold">
+        <td>nơi đi</td>
+        <td>nơi đến</td>
+    </tr>
+    <tr>
+        <td rowspan="2" class="head redCo bold">Sáng</td>
+        <td>Hồ Chí Minh</td>
+        <td>Hà Nội</td>
+    </tr>
+    <tr>
+        <td>Hồ Chí Minh</td>
+        <td>Singapore</td>
+    </tr>
+    <tr>
+        <td rowspan="2" class="head redCo bold">Chiều</td>
+        <td>Hà Nội</td>
+        <td>New York</td>
+    </tr>
+    <tr>
+        <td>Hồ Chí Minh</td>
+        <td>Phú quốc</td>
+    </tr>
+</table>
+
+</body>
+</html>

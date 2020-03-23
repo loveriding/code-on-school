@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>ex2</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+		<style type="text/css">
+		#imgboxbottom, #imgboxbottom * {
+			box-sizing: border-box;
+			border: 1px solid black;
+		}
+		#imgboxbottom {
+			width: 328px;
+			margin: 20px auto ;
+			
+		}
+		#imgboxtop, #imgboxtop * {
+			box-sizing: border-box;
+			border: 1px solid black;
+		}
+		#imgboxtop {
+			width: 197px;
+			margin: 20px auto ;
+			border-collapse: collapse;
+		}
+		.imgbox > div {
+			width: 65px;
+			height: 65px;
+			float: left;
+		}
+		.alert {
+				margin: auto;
+				height: 50px;
+				width: 400px;
+				text-align: center;
+				margin-top: 50px;
+				display: none;
+
+			}
+		img {
+			width: 63px;
+			height: 63px;
+		}
+			
+		</style>
+		
+	</head>
+	<body>
+			
+
+
+		<div class="imgbox" id="imgboxtop" >
+			<!-- <div ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+			<div ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+			<div ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+			<div ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+			<div ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+			<div ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+			<div ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+			<div ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+			<div ondrop="drop(event)" ondragover="allowDrop(event)"></div> -->
+
+		</div>
+		<br style="clear: both;">	
+		<div class="imgbox" id="imgboxbottom" >
+		</div>
+		<br style="clear: both;">	
+		<div class="alert alert-success" role="alert" >
+			xaochoxaochoxaocho
+		</div>
+		<script>
+			var boxTop = document.getElementById('imgboxtop');
+			var bottom = document.getElementById('imgboxbottom')
+			var angleList = [];
+			createImageBox();
+			rotateImgRandom();
+			$('img').click(rotate90)
+			$('#imgboxtop').click(checkWin)
+			
+
+
+			function onCheckFullImg() {
+				var count = 0;
+				$('#imgboxtop > div').each(function() {
+					var img = $(this).find('img');   
+				   var length = img.length;
+				   if(length == 1)
+				   	count ++ ;
+				});
+					if(count == 9)
+						return true
+				return false;
+			};
+			
+			function checkWin() {
+				if(!onCheckFullImg())
+					return false;
+				for(var i = 0; i < angleList.length - 1; i++){
+						if(angleList[i] != 0){
+							return false;					
+						} 
+				}
+				
+				$('#imgboxtop > div').each(function() {
+					
+										
+					var idd = $(this).attr('tag');
+					var img = $(this).find('img');   
+				   var length = img.length;
+				   
+					if(length == 0 || img[0].id != idd){
+						return false;
+
+					}
+				})
+					alertSuccess();
+			}
+			function rotate90() {
+				let angle = [0, 90, 180, 270];
+				current = checkAngle(this) + 1;
+				var idx = this.id;
+				if (current === 4) {
+					current = current % 4;
+				}
+				$('#' + idx).css('transform', 'rotate(' + angle[current] + 'deg)');
+				angleList.splice(parseInt(idx.substr(4)),1,current)
+			}
+			function checkAngle(event) {
+				var s =  event.style.transform;
+				if(s[7] === '0')
+					return 0;
+				else if (s[7] === '9')
+					return 1;
+				else if(s[7] === '1')
+					return 2;
+				return 3; 
+			}
+			function rotateImgRandom() {
+					let angle = [0, 90, 180, 270];			
+					//rotateRandom
+					for(var i = 0; i < 10; i ++){
+						var rand = Math.floor(Math.random() * 4);
+						$('#drag' + i).css('transform', 'rotate(' + angle[rand] + 'deg)');
+						angleList.push(rand)
+					}
+				}
+			function createImageBox() {
+						var listImg = ['images/cntt_10.gif'];
+						for(var i = 9; i >0; i--) {
+							listImg.unshift('images/cntt_0' + i + '.gif');
+						}
+						var content = listImg.map(function(item,index) {
+							return '<div " ondrop="drop(event)" ondragover="allowDrop(event)"><img src="' + item + '" draggable="true" ondragstart="drag(event)" id="drag' + index +'" width="88" height="31"></div>'
+						})
+						bottom.innerHTML = content.join('');
+						var cnt = '';
+						for(let i = 0; i < 9; i++) {
+							cnt += '<div tag = "drag' + i +'"ondrop="drop(event)" ondragover="allowDrop(event)"></div>'
+						boxTop.innerHTML = cnt; 
+					}
+				}
+
+			var alertSuccess = function() {
+				$(document).ready(function() {
+				$('.alert-success').fadeIn(1000)
+				})
+			}
+
+
+			function allowDrop(ev) {
+			  ev.preventDefault();
+			}
+			function drag(ev) {
+			  ev.dataTransfer.setData("text", ev.target.id);
+			}
+			function drop(ev) {
+				if(ev.target.tagName !== "DIV"){
+					return false;
+				}
+			  ev.preventDefault();
+			  var data = ev.dataTransfer.getData("text");
+			  ev.target.appendChild(document.getElementById(data));
+
+
+			}
+</script>
+	</body>
+</html>

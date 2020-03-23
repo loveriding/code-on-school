@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<style>
+    .container{
+        max-width: 600px;
+        margin: auto;
+    }
+
+    checkbox{
+        margin-right: 10px;
+    }
+</style>
+
+
+<div class="container">
+    <br>
+    <br>
+    <p>Message will be here</p><p id="show"></p><br>
+
+    <div class="form-group">
+        <label for="message">Message:</label>
+        <input type="text" class="form-control" id="message" placeholder="Enter new message" name="message" onkeyup ="text()">
+
+    </div>
+    <div class="form-group">
+        <label for="color">Color:</label>
+        <select name="color" id="color" onchange="changeColor()">
+            <option>Black</option>
+            <option>Red</option>
+            <option>Green</option>
+            <option>Blue</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="bold">Bold:</label>
+        <input type="checkbox" name="bold" id="bold" onchange="changCheckboxBold(this)">
+        <label for="italic">Italic:</label>
+        <input type="checkbox" name="italic" id="italic" onchange="changCheckboxIta(this)">
+        <label for="underline">Underline:</label>
+        <input type="checkbox" name="underline" id="underline"onchange="changCheckboxUnder(this)">
+    </div>
+
+    <button type="button" onclick="showMess()">Show message</button>
+
+</div>
+    <script type="text/javascript">
+
+        var message = document.getElementById('message');
+        var show = document.getElementById('show');
+        var color = document.getElementById('color');
+        var bold = document.getElementById('bold');
+        var italic = document.getElementById('italic');
+        var underline = document.getElementById('underline');
+
+        function text() {
+            show.innerHTML = message.value;
+        }
+
+        function changeColor() {
+            switch(color.selectedIndex){
+            case 1:
+                show.style.color = "red";
+                break;
+            case 2: 
+                show.style.color = "green";
+                break;
+            case 3:
+                show.style.color = "blue";
+            }
+        }
+
+        function changCheckboxBold(format) {
+            var str = show.textContent;
+            var str1 = str;
+            if(format.checked){
+            show.innerHTML = '<b>' + str + '</b>';
+            }
+            else
+                 show.removeChild('b');
+        }
+        function changCheckboxIta(format) {
+            var str = show.innerHTML;
+            if(format.checked){
+            show.innerHTML = '<i>' + show.innerHTML + '</i>';
+            }
+            else
+                show.removeChild('i');
+        }
+        function changCheckboxUnder(format) {
+            var str = show.innerHTML;
+            if(format.checked){
+            show.innerHTML = '<u>' + str + '</u>';
+            }
+            else
+                show.innerHTML = str;
+        }
+        function showMess() {
+            alert(show.textContent);
+        }
+        function removeChil() {
+            var node = document.creat
+        }
+   
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Form PHP</title>
+
+</head>
+<body>
+    <div id="main">
+        <h1>Login Form</h1>
+        <form method="POST">
+            Username <input type="text" name="username" autocomplete="off">
+            PassWord <input type="password" name="password">
+            <button type="submit" name="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
+<?php 
+// username : admin - password: password.
+    if (isset($_POST['submit'])) {
+        $un = $_POST['username'];
+        $pw = $_POST['password'];
+        if ($un == 'admin') {
+            if ($pw != 'password') {
+                # code...
+                echo 'Invalid Password!';
+            }
+
+            elseif ($pw == 'password') {
+                # code...
+                echo "Welcome!";;
+            }
+        }
+        else {
+            echo 'Invalid Username!';
+        }
+    }
+ ?>
